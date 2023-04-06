@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
+        nodejs: [ '16.x', '18.x' ]
 
     runs-on: ${{ matrix.os }}
 
