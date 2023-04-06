@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
+
     - name: Send message to Webex space
       shell: bash
       run: |
@@ -35,4 +35,4 @@ jobs:
       with:
         webexToken:${{secrets.WEBEX_TOKEN}}
         webexRoomId:${{secrets.WEBEX_ROOM_ID}}
-        bodyText: "커스텀 액션을 사용한 깃헙 액션 워크샵입니다 - 이준하 from ${{ github.repository }}"
+        bodyText:"커스텀 액션을 사용한 깃헙 액션 워크샵입니다 - 이준하 from ${{ github.repository }}"
