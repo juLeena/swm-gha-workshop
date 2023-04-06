@@ -2,55 +2,26 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
-env:
-  WORKFLOW_LEVEL: "This value comes from the WORKFLOW level"
-
 jobs:
   first-job:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
-    env:
-      JOB_LEVEL: "This value comes from the JOB level"
-
     steps:
-    - name: Say Hello World
+    - name: Set output value
+      id: first
       shell: bash
       run: |
-        echo "Hello World"
+        swm_value1="This is the value for the first output"
+        swm_value2="This is the value for the second output"
 
-    - name: Check environment variables 1
-      shell: bash
-      env:
-        STEP_LEVEL_1: "This value comes from the STEP level 1"
-      run: |
-        echo "workflow level: $WORKFLOW_LEVEL"
-        echo "job level: $JOB_LEVEL"
-        echo "step level 1: $STEP_LEVEL_1"
-        echo "step level 2: $STEP_LEVEL_2"
-        echo "step level 3: $STEP_LEVEL_3"
+        echo "::set-output name=swm1::$swm_value1"
+        echo "::set-output name=swm2::$swm_value2"
 
-    - name: Set environment variable
-      shell: bash
 
-      run: |
-        swmValue=$(echo "hello SWM")
-        
-        echo "SWM_VALUE=$swmValue" >> $GITHUB_ENV
-    
-    - name: Get environment variable
-      shell: bash
-
-      run: |
-        echo "SWM_VALUE 1: ${{env.SWM_VALUE}}"
-        echo "SWM_VALUE 2: $SWM_VALUE" #bash 문법
-        echo "SWM_VALUE 3: $env:SWM_VALUE" #pwsh 문법
-
-    - name: Get environment variable
+    - name: Get output value
       shell: pwsh
-
       run: |
-        echo "SWM_VALUE 1: ${{env.SWM_VALUE}}"
-        echo "SWM_VALUE 2: $SWM_VALUE"
-        echo "SWM_VALUE 3: $env:SWM_VALUE"
+        echo "Output value 1 is: ${{steps.first.outputs.swm1}}"
+        echo "Output value 2 is: ${{steps.first.outputs.swm2}}"
