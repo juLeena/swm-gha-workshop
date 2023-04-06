@@ -4,8 +4,7 @@ on: push
 
 jobs:
   first-job:
-
-   name: 'First Job'
+    name: 'First Job'
 
     runs-on: ubuntu-latest
 
