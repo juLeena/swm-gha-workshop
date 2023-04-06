@@ -18,3 +18,9 @@ jobs:
       shell: bash
       run: |
         echo "Hello World on ${{ matrix.nodejs }}"
+
+    - name: Say Hello World on ${{ matrix.os }}
+      if: matrix.os == 'ubuntu_latest'
+      shell: bash
+      run: |
+        echo "Hello World on ${{ matrix.nodejs }}"
