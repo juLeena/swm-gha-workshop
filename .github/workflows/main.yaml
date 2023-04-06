@@ -31,24 +31,26 @@ jobs:
         echo "step level 2: $STEP_LEVEL_2"
         echo "step level 3: $STEP_LEVEL_3"
 
-    - name: Check environment variables 2
-      shell: pwsh
-      env:
-        STEP_LEVEL_2: "This value comes from the STEP level 2"
-      run: |
-        echo "workflow level: $env:WORKFLOW_LEVEL"
-        echo "job level: $env:JOB_LEVEL"
-        echo "step level 1: $env:STEP_LEVEL_1"
-        echo "step level 2: $env:STEP_LEVEL_2"
-        echo "step level 3: $env:STEP_LEVEL_3"
-
-    - name: Check environment variables 3
+    - name: Set environment variable
       shell: bash
-      env:
-        STEP_LEVEL_3: "This value comes from the STEP level 3"
+
       run: |
-        echo "workflow level: ${{ env.WORKFLOW_LEVEL }}"
-        echo "job level: ${{ env.JOB_LEVEL }}"
-        echo "step level 1: ${{ env.STEP_LEVEL_1 }}"
-        echo "step level 2: ${{ env.STEP_LEVEL_2 }}"
-        echo "step level 3: ${{ env.STEP_LEVEL_3 }}"
+        swmValue=$(echo "hello SWM")
+        
+        echo "SWM_VALUE=$swmValue" >> $GITHUB_ENV
+    
+    - name: Get environment variable
+      shell: bash
+
+      run: |
+        echo "SWM_VALUE 1: ${{env.SWM_VALUE}}"
+        echo "SWM_VALUE 2: $SWM_VALUE" #bash 문법
+        echo "SWM_VALUE 3: $env:SWM_VALUE" #pwsh 문법
+
+    - name: Get environment variable
+      shell: pwsh
+
+      run: |
+        echo "SWM_VALUE 1: ${{env.SWM_VALUE}}"
+        echo "SWM_VALUE 2: $SWM_VALUE"
+        echo "SWM_VALUE 3: $env:SWM_VALUE"
