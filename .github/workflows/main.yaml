@@ -8,6 +8,28 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+    JOB_LEVEL_1: "This value comes from the JOB level 1"
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+      run: |
+        echo "Hello World from step 1"
+
+    - name: Say Hello World 2
+      shell: pwsh
+      run: |
+        echo "Hello World from step 2"
+  
+  second-job:
+    name: 'Second Job'
+
+    runs-on: ubuntu-latest
+
+    env:
+    JOB_LEVEL_1: "This value comes from the JOB level 1"
+
     steps:
     - name: Say Hello World 1
       shell: bash
