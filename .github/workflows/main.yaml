@@ -16,7 +16,7 @@ jobs:
         swm_value1="This is the value for the first output"
         swm_value2="This is the value for the second output"
 
-        echo "::add-mask::$swm1"
+        echo "::add-mask::$swm_value1"
         echo "swm1=$swm_value1" >> $GITHUB_OUTPUT
         echo "swm2=$swm_value2" >> $GITHUB_OUTPUT
 
